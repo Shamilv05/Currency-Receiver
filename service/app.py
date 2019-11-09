@@ -1,5 +1,5 @@
 from aiohttp import web
-from .routes import router
+from service.routes import router
 
 
 def create_app():

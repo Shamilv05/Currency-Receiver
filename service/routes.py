@@ -1,7 +1,8 @@
 import aiohttp
 import asyncio
+import json
 
-rate = None
+rate = {"data": "No Data"}
 
 
 async def currency(url: str):
@@ -10,6 +11,7 @@ async def currency(url: str):
         async with aiohttp.ClientSession() as session:
             async with session.get(url) as resp:
                 rate = await resp.read()
+                rate = json.loads(rate)
         await asyncio.sleep(3)
 
 router = aiohttp.web.RouteTableDef()
@@ -17,4 +19,4 @@ router = aiohttp.web.RouteTableDef()
 
 @router.get('/')
 async def currency_get(request):
-    return aiohttp.web.Response(text=f"data: {rate}")
+    return aiohttp.web.json_response(rate)
