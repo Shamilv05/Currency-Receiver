@@ -1,0 +1,14 @@
+version: '2.4'
+
+services:
+  app:
+    build:
+      context: .
+      target: app
+
+    ports:
+      - "80:80"
+
+    volumes:
+      - .:/mnt
+    working_dir: /mnt/

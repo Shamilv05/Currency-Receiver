@@ -1,4 +1,4 @@
-import aiohttp.web
+import aiohttp
 from aiomisc import entrypoint
 from aiomisc.service.aiohttp import AIOHTTPService
 from backend.handlers import currency_get, currency
@@ -18,7 +18,7 @@ class CurrencyReciever(AIOHTTPService):
 
 
 def main():
-    service = CurrencyReciever(address='0.0.0.0', port=8090)
+    service = CurrencyReciever(address='0.0.0.0', port=80)
 
     with entrypoint(service) as loop:
         log.info('Loop created')
