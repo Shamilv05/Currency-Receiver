@@ -14,9 +14,6 @@ async def currency(url: str):
                 rate = json.loads(rate)
         await asyncio.sleep(3)
 
-router = aiohttp.web.RouteTableDef()
 
-
-@router.get('/')
 async def currency_get(request):
     return aiohttp.web.json_response(rate)
