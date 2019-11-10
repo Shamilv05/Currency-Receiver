@@ -1,4 +1,5 @@
-import aiohttp
+from aiohttp import web, ClientSession
+from backend.logger import log
 import asyncio
 import json
 
@@ -8,7 +9,7 @@ rate = {"data": "No Data"}
 async def currency(url: str):
     global rate
     while True:
-        async with aiohttp.ClientSession() as session:
+        async with ClientSession() as session:
             async with session.get(url) as resp:
                 rate = await resp.read()
                 rate = json.loads(rate)
@@ -16,4 +17,5 @@ async def currency(url: str):
 
 
 async def currency_get(request):
-    return aiohttp.web.json_response(rate)
+    log.info(request)
+    return web.json_response(rate)
